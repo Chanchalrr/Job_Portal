@@ -35,19 +35,23 @@
                 <li class="dropdown"><a href="#" class="get-started-btn"><i style="color:#ffd584" class=" fs-5 bi bi-person-circle"></i>&nbsp;&nbsp;&nbsp;<i class="bi bi-chevron-down"></i>&nbsp;&nbsp;&nbsp;</a>
                     <ul>
                         <li><a href="#">Settings</a></li>
-                        <li><a href="Logout.jsp">Log Out</a></li>
+                        <li><a href="LogOut.jsp">Log Out</a></li>
                     </ul>
                 </li>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav>
-        <%  } else {if (page_name == "login.jsp") {%>
-                <a  href = "registration.jsp" class="get-started-btn">Registration</a >
-            <%} else {%>
-                <a href="login.jsp" class="get-started-btn">Log In</a>
-        <%  
-        }}%>
-
-
+        <%} else {
+            String link,text;
+            if (page_name == "login.jsp") {
+                link = "registration.jsp";
+                text = "Registration";
+            } else {
+                link = "login.jsp";
+                text = "Login";
+            }%>
+            <a  href = "<%out.print(link);%>" class="get-started-btn"><%out.print(text);%></a >
+        <%}%>
+    
     </div>
 </header>

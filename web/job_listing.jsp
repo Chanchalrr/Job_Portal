@@ -6,18 +6,23 @@
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="com.jobportal.services.DBConnection"%>
 <%@page import="java.sql.Connection"%>
+<%@page import="com.jobportal.model.JobsDAO"%>
+<%@page import="com.jobportal.model.CategoriesDAO"%>
+<%//@page import="java.sql.PreparedStatement"%>
+<%//@page import="com.jobportal.services.DBConnection"%>
+<%//@page import="java.sql.Connection"%>
 <%@page import="java.sql.ResultSet"%>
 <%
-    ResultSet categoriesList=null ;
-    try{
+    /*try{
         Connection con = DBConnection.myMethod();
         String sql = "select * from jobcategory ";
         PreparedStatement ps = con.prepareStatement(sql);
         categoriesList = ps.executeQuery();
     } catch (Exception e) {
             e.printStackTrace();
-    }
-    
+    }*/
+    CategoriesDAO categorieshandler = new CategoriesDAO();
+    ResultSet categoriesList = categorieshandler.select();
 %>
 <jsp:include page="include_files/top_inc.jsp"/>
 
@@ -47,16 +52,23 @@
             <div class="accordion-item">
                 <h2 class="accordion-header" id="<%out.print(heading);%>">
                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="<%out.print(collapse);%>" aria-expanded="true" aria-controls="<%out.print(collapse);%>">
-                        <%out.print(categoryName);%>
+                        <%out.print(categoryName.toUpperCase());%>
                     </button>
                 </h2>
                 <div id="<%out.print(collapse);%>" class="accordion-collapse collapse show" aria-labelledby="<%out.print(heading);%>" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        <ul class="list-group">
+                        <div class="list-group">
 
-                           
+                           <%Connection con = DBConnection.myMethod();
+                            String sql = "select * from jobs where category_id =?";
+                            PreparedStatement ps = con.prepareStatement(sql);
+                            ps.setInt(1, i);
+                            ResultSet jobs = ps.executeQuery();
+                           while(jobs.next()){%>
+                           <a href="job_detail.jsp?id=<%out.print(jobs.getInt("id"));%>"><div class="list-group-item list-group-item-action m-1 rounded-3"><%out.print(jobs.getString("name"));%><i class="bi bi-arrow-right-circle position-absolute end-0 mx-3"></i></div></a>
+                          <% } %>
 
-                        </ul>
+                        </div>
                     </div>
                 </div>
             </div>
