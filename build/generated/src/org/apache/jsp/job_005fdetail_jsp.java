@@ -51,8 +51,10 @@ public final class job_005fdetail_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write('\n');
       out.write('\n');
 
-   JobsDAO jobsHandler = new JobsDAO();
-   ResultSet job = jobsHandler.selectById(Integer.parseInt(request.getParameter("id")));
+    JobsDAO jobsHandler = new JobsDAO();
+    ResultSet job = jobsHandler.selectById(Integer.parseInt(request.getParameter("id")));
+    String s = jobsHandler.selectById(Integer.parseInt(request.getParameter("id"))).toString();
+
 
       out.write("\n");
       out.write("\n");
@@ -73,30 +75,51 @@ public final class job_005fdetail_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("    <div class=\"container\">\n");
       out.write("        <div class=\"card\">\n");
       out.write("            <div class=\"card-header\">\n");
-      out.write("                \n");
+      out.write("\n");
       out.write("            </div>\n");
       out.write("            <div class=\"card-body\">\n");
       out.write("                <h5 class=\"card-title\">");
-job.getString("name");
+out.print(s);//job.getString("name");
       out.write("</h5>\n");
       out.write("                <p class=\"card-text\">");
-job.getString("desc");
+//job.getString("desc");
       out.write("</p>\n");
       out.write("                <p class=\"card-text\">Pay : ");
-job.getString("desc");
+//job.getString("desc");
       out.write("</p>\n");
       out.write("                <p class=\"card-text\">Contact Number : ");
-job.getString("mobile_num");
+//job.getString("mobile_num");
       out.write("</p>\n");
       out.write("                <p class=\"card-text\">Address: ");
-job.getString("address");
+//job.getString("address");
       out.write("</p>\n");
-      out.write("                <a href=\"#\" class=\"btn btn-primary\">Apply</a>\n");
-      out.write("            </div>\n");
-      out.write("        </div>\n");
-      out.write("    </div>\n");
-      out.write("</section>\n");
+      out.write("                <!-- Button trigger modal -->\n");
+      out.write("                <button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#exampleModal\">Apply</button>\n");
       out.write("\n");
+      out.write("                <!-- Modal -->\n");
+      out.write("                <div class=\"modal fade\" id=\"exampleModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\n");
+      out.write("                    <div class=\"modal-dialog\" role=\"document\">\n");
+      out.write("                        <div class=\"modal-content\">\n");
+      out.write("                            <div class=\"modal-header\">\n");
+      out.write("                                <h5 class=\"modal-title\" id=\"exampleModalLabel\">Modal title</h5>\n");
+      out.write("                                <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n");
+      out.write("                                    <span aria-hidden=\"true\">&times;</span>\n");
+      out.write("                                </button>\n");
+      out.write("                            </div>\n");
+      out.write("                            <div class=\"modal-body\">\n");
+      out.write("                                ...\n");
+      out.write("                            </div>\n");
+      out.write("                            <div class=\"modal-footer\">\n");
+      out.write("                                <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n");
+      out.write("                                <button type=\"button\" class=\"btn btn-primary\">Save changes</button>\n");
+      out.write("                            </div>\n");
+      out.write("                        </div>\n");
+      out.write("                    </div>\n");
+      out.write("                </div>\n");
+      out.write("            </div>\n");
+      out.write("            </section>\n");
+      out.write("\n");
+      out.write("            ");
       org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "include_files/bottom_inc.jsp", out, false);
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){

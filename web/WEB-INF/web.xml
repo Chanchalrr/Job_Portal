@@ -20,6 +20,10 @@
         <servlet-name>Provider</servlet-name>
         <servlet-class>com.jobportal.controller.Provider</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Apply</servlet-name>
+        <servlet-class>com.jobportal.controller.Apply</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Registration</servlet-name>
         <url-pattern>/Registration</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>Provider</servlet-name>
         <url-pattern>/Provider</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Apply</servlet-name>
+        <url-pattern>/Apply</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

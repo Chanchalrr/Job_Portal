@@ -3,6 +3,10 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import java.sql.PreparedStatement;
+import com.jobportal.services.DBConnection;
+import java.sql.Connection;
+import com.jobportal.model.JobsDAO;
 import com.jobportal.model.CategoriesDAO;
 import java.sql.ResultSet;
 
@@ -43,8 +47,12 @@ public final class job_005flisting_jsp extends org.apache.jasper.runtime.HttpJsp
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
-      out.write('\n');
-      out.write('\n');
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
 //@page import="java.sql.PreparedStatement"
       out.write('\n');
 //@page import="com.jobportal.services.DBConnection"
@@ -103,7 +111,7 @@ out.print(collapse);
 out.print(collapse);
       out.write("\">\n");
       out.write("                        ");
-out.print(categoryName);
+out.print(categoryName.toUpperCase());
       out.write("\n");
       out.write("                    </button>\n");
       out.write("                </h2>\n");
@@ -113,11 +121,26 @@ out.print(collapse);
 out.print(heading);
       out.write("\" data-bs-parent=\"#accordionExample\">\n");
       out.write("                    <div class=\"accordion-body\">\n");
-      out.write("                        <ul class=\"list-group\">\n");
+      out.write("                        <div class=\"list-group\">\n");
       out.write("\n");
-      out.write("                           \n");
+      out.write("                           ");
+Connection con = DBConnection.myMethod();
+                            String sql = "select * from jobs where category_id =?";
+                            PreparedStatement ps = con.prepareStatement(sql);
+                            ps.setInt(1, i);
+                            ResultSet jobs = ps.executeQuery();
+                           while(jobs.next()){
       out.write("\n");
-      out.write("                        </ul>\n");
+      out.write("                           <a href=\"job_detail.jsp?id=");
+out.print(jobs.getInt("id"));
+      out.write("\"><div class=\"list-group-item list-group-item-action m-1 rounded-3\">");
+out.print(jobs.getString("name"));
+      out.write("<i class=\"bi bi-arrow-right-circle position-absolute end-0 mx-3\"></i></div></a>\n");
+      out.write("                          ");
+ } 
+      out.write("\n");
+      out.write("\n");
+      out.write("                        </div>\n");
       out.write("                    </div>\n");
       out.write("                </div>\n");
       out.write("            </div>\n");
