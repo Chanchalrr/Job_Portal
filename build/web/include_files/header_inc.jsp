@@ -18,10 +18,10 @@
                     <%if (user != null) {
                                 switch (user.getString("role").toLowerCase().trim()) {
                                     case "seeker":%>
-                <li><a class="nav-link" href="PDashboard.jsp">Dashboard</a></li>
+                <li><a class="nav-link" href="SDashboard.jsp">Dashboard</a></li>
                     <%    break;
                                           case "provider":%>
-                <li><a class="nav-link" href="PDashboard.jsp">Dashboard</a></li>
+                <li><a class="nav-link" href="SDashboard.jsp">Dashboard</a></li>
                     <%    break;
                                               }
                                           }%>
